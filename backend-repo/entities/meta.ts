@@ -1,5 +1,5 @@
 export interface Meta {
-  page: number
-  limit: number
-  totalData: number
+    page: number
+    limit: number
+    totalData: number
 }

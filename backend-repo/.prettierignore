@@ -7,11 +7,11 @@ package-lock.json
 .idea
 .vscode
 dist
-.env
+*.env*
 *.json
 *.yaml
 *.toml
 .prettier*
 .lint*
 .mjs
-
+*.MD

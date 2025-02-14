@@ -17,13 +17,18 @@ export class UserRepository {
         })
 
         const userCreated = await userCollection.doc(newUser.id).get()
-        return { ...userCreated.data() } as User
+        return { id: newUser.id, ...userCreated.data() } as User
     }
 
     async findAll(limit: number = 10, page: number = 1): Promise<{ users: User[]; meta: Meta | null }> {
         const offset = (page - 1) * limit
         const totalSnapshot = await userCollection.where('isDeleted', '==', false).get()
-        const snapshot = await userCollection.where('isDeleted', '==', false).orderBy('createdAt').offset(offset).limit(limit).get()
+        const snapshot = await userCollection
+            .where('isDeleted', '==', false)
+            .orderBy('createdAt')
+            .offset(offset)
+            .limit(limit)
+            .get()
 
         const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as User[]
         const totalData = totalSnapshot.size
@@ -81,5 +86,20 @@ export class UserRepository {
         })
 
         return true
+    }
+
+    async register(user: User): Promise<User | null> {
+        const dateNow = new Date()
+        await userCollection.doc(user.id).set({
+            name: user.name,
+            email: user.email,
+            gender: user.gender,
+            createdAt: dateNow.toISOString(),
+            updatedAt: dateNow.toISOString(),
+            isDeleted: false,
+        })
+
+        const userCreated = await userCollection.doc(user.id).get()
+        return { ...userCreated.data() } as User
     }
 }

@@ -1,8 +1,9 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
 import { UserRepository } from '#repository/userRepository'
 import { User } from '#entities/user'
 import { generateAPIResponse } from '#utils/http'
 import logger from '#utils/logger'
+import { AuthRequest } from '#entities/auth'
 
 export class UserController {
     private userRepository: UserRepository
@@ -11,7 +12,7 @@ export class UserController {
         this.userRepository = new UserRepository()
     }
 
-    public async getUsers(req: Request, res: Response): Promise<void> {
+    public async getUsers(req: AuthRequest, res: Response): Promise<void> {
         try {
             const { page, limit } = req.query
             const data = await this.userRepository.findAll(Number(limit), Number(page))
@@ -27,7 +28,7 @@ export class UserController {
         }
     }
 
-    public async getUserById(req: Request, res: Response): Promise<void> {
+    public async getUserById(req: AuthRequest, res: Response): Promise<void> {
         try {
             const user = await this.userRepository.findById(req.params.id)
             if (!user) {
@@ -45,7 +46,7 @@ export class UserController {
         }
     }
 
-    public async createUser(req: Request, res: Response): Promise<void> {
+    public async createUser(req: AuthRequest, res: Response): Promise<void> {
         try {
             const newUser: User = req.body
             const createdUser = await this.userRepository.create(newUser)
@@ -60,7 +61,7 @@ export class UserController {
         }
     }
 
-    public async updateUser(req: Request, res: Response): Promise<void> {
+    public async updateUser(req: AuthRequest, res: Response): Promise<void> {
         try {
             const { id } = req.params
             const updatedUser: User = req.body
@@ -82,7 +83,7 @@ export class UserController {
         }
     }
 
-    public async deleteUser(req: Request, res: Response): Promise<void> {
+    public async deleteUser(req: AuthRequest, res: Response): Promise<void> {
         try {
             const user = await this.userRepository.delete(req.params.id)
             if (!user) {
