@@ -1,0 +1,6 @@
+{
+    "ignore": [".git", "node_modules", "dist"],
+    "watch": ["**/*.ts"],
+    "exec": "ts-node -r dotenv/config ./core/app.ts",
+    "ext": "ts"
+}

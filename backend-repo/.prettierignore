@@ -1,0 +1,17 @@
+.husky
+node_modules
+build
+dist
+.git*
+package-lock.json
+.idea
+.vscode
+dist
+.env
+*.json
+*.yaml
+*.toml
+.prettier*
+.lint*
+.mjs
+
