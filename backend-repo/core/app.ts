@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
 import logger from '#/utils/logger'
-import morganMiddleware from '#middleware/morganMiddlewares'
+import morganMiddleware from '#middleware/morgan'
 import v1Routes from '#/routes/v1'
 import userRoutesTechnicalTest from '#routes/userRoutes.technicaltest'
 
