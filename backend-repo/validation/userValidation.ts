@@ -29,7 +29,7 @@ export const updateUserValidation = [
     body('name').notEmpty().withMessage('Name cannot be empty').bail().isString().withMessage('Name must string'),
     body('gender')
         .isString()
-        .withMessage('Name must string')
+        .withMessage('Gender must string')
         .bail()
         .notEmpty()
         .withMessage('Gender cannot be empty')
