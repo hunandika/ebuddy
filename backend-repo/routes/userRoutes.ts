@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { UserController } from '#controller/userController'
 import validate from '#middleware/validateRequest'
 import {
@@ -9,7 +9,7 @@ import {
     deleteUserValidation,
 } from '#validation/userValidation'
 
-const router = express.Router()
+const router: Router = express.Router()
 const userController = new UserController()
 
 router.get('/', validate(getUsersValidation), (req, res) => userController.getUsers(req, res))

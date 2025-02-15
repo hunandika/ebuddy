@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node ./core/app.js",
-    "build": "tsc && tsc-alias",
+    "start": "node ./dist/core/index.js",
+    "build": "tsc && tsc-alias && npm run build:functions",
+    "build:functions": "cd functions && npm run build",
     "dev": "nodemon",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -47,7 +48,6 @@
     "typescript-eslint": "^8.24.0"
   },
   "engines": {
-    "node": ">=22",
-    "pnpm": ">=10"
+    "node": ">=22"
   }
 }
