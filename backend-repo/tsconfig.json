@@ -1,7 +1,9 @@
 {
     "ts-node": {
         "transpileOnly": true,
-        "require": ["tsconfig-paths/register"]
+        "require": [
+            "tsconfig-paths/register"
+        ]
     },
     "compilerOptions": {
         "target": "ES2024",
@@ -15,9 +17,15 @@
         "forceConsistentCasingInFileNames": true,
         "baseUrl": ".",
         "paths": {
-            "#*": ["./*"]
+            "#*": [
+                "./*"
+            ]
         }
     },
-    "include": ["**/*.ts"],
-    "exclude": ["node_modules"]
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }

@@ -1,10 +1,10 @@
-import express from 'express'
+import express, { Router } from 'express'
 import { UserController } from '#controller/userController'
 import validate from '#middleware/validateRequest'
 import authenticate from '#middleware/authenticate'
 import { getUsersValidation, updateUserValidation } from '#validation/userValidation'
 
-const router = express.Router()
+const router: Router = express.Router()
 const userController = new UserController()
 
 // According to the needs of the technical test questions, the endpoint names are update-user-data and fetch-user-data
