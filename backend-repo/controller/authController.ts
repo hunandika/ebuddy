@@ -4,6 +4,7 @@ import { AuthRepository } from '#repository/authRepository'
 import { User } from '#entities/user'
 import { generateAPIResponse } from '#utils/http'
 import logger from '#utils/logger'
+import { AuthRequest } from '#entities/auth'
 
 export class AuthController {
     private userRepository: UserRepository
@@ -14,16 +15,14 @@ export class AuthController {
         this.authRepository = new AuthRepository()
     }
 
-    public async verify(req: Request, res: Response): Promise<void> {
+    public async verify(req: AuthRequest, res: Response): Promise<void> {
         try {
-            const { idToken } = req.body
-            const decodedToken = await this.authRepository.verify(idToken)
-            if (!decodedToken) {
+            if (!req.user?.uid) {
                 generateAPIResponse(res, { message: 'Invalid token', statusCode: 401 })
                 return
             }
 
-            const user = await this.userRepository.findById(decodedToken.uid)
+            const user = await this.userRepository.findById(req.user.uid)
             if (!user) {
                 generateAPIResponse(res, { message: 'User not found', statusCode: 404 })
                 return
