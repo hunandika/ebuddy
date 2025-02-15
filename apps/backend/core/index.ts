@@ -1,7 +1,7 @@
 import logger from '#/utils/logger'
 import app from './app'
 
-const EXPRESS_PORT = process.env.EXPRESS_PORT || 3000
+const EXPRESS_PORT = process.env.EXPRESS_PORT || 3001
 
 // Start the server
 app.listen(EXPRESS_PORT, () => {

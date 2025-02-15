@@ -1,6 +1,6 @@
 import { Response } from 'express'
 import { UserRepository } from '#repository/userRepository'
-import { User } from '#entities/user'
+import { User } from '@repo/entities/user'
 import { generateAPIResponse } from '#utils/http'
 import logger from '#utils/logger'
 import { AuthRequest } from '#entities/auth'

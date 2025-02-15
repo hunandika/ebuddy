@@ -39,7 +39,7 @@ Ensure you have the following installed:
    ```bash
    pnpm dev
    ```
-   The server will start on `http://localhost:3000`.
+   The server will start on `http://localhost:3001`.
 
 ---
 

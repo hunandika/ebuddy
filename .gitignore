@@ -1,0 +1,8 @@
+.turbo
+node_modules/
+.idea/
+.vscode/
+dist/
+.env
+lib/
+.DS_Store

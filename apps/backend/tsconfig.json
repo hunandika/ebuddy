@@ -1,4 +1,5 @@
 {
+  "extends": "@repo/typescript-config/base.json",
     "ts-node": {
         "transpileOnly": true,
         "require": [
@@ -6,14 +7,8 @@
         ]
     },
     "compilerOptions": {
-        "target": "ES2024",
-        "module": "NodeNext",
-        "moduleResolution": "nodenext",
         "outDir": "./dist",
         "rootDir": ".",
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "baseUrl": ".",
         "paths": {

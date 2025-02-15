@@ -1,5 +1,5 @@
 {
-  "name": "ebuddy-be",
+  "name": "backend",
   "version": "1.0.0",
   "main": "dist/firebase.function.js",
   "scripts": {
@@ -17,13 +17,14 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --ignore-path .prettierignore --write .",
     "prettier:fix": "prettier --write .",
-    "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "lint-staged": "lint-staged"
   },
   "author": "Hunandika Adyota",
   "license": "ISC",
   "description": "Backend repository for eBuddy technical test",
   "dependencies": {
+    "@repo/entities": "*",
+    "@repo/typescript-config": "*",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
@@ -45,12 +46,10 @@
     "firebase-admin": "^13.1.0",
     "firebase-functions-test": "^3.4.0",
     "globals": "^15.15.0",
-    "husky": "^9.1.7",
     "nodemon": "^3.1.9",
     "prettier": "^3.5.1",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
