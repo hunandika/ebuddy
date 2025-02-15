@@ -7,6 +7,6 @@ import rateLimiter from '#middleware/rateLimit'
 const router: Router = express.Router()
 
 router.use('/user', authenticate, userRoute)
-router.use('/auth', rateLimiter, authRoutes)
+router.use('/auth', rateLimiter, authenticate, authRoutes)
 
 export default router

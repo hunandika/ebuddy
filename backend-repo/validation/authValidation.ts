@@ -1,15 +1,9 @@
-import { body } from 'express-validator'
+import { body, header } from 'express-validator'
 
-export const verifyValidation = [
-    body('idToken')
-        .notEmpty()
-        .withMessage('IdToken cannot be empty')
-        .bail()
-        .isString()
-        .withMessage('IdToken must string'),
-]
+export const verifyValidation = [header('authorization').notEmpty().withMessage('Token cannot be empty')]
 
 export const registerValidation = [
+    header('authorization').notEmpty().withMessage('Token cannot be empty'),
     body('id').notEmpty().withMessage('Id cannot be empty').bail().isString().withMessage('Id must string'),
     body('email').notEmpty().withMessage('Email cannot be empty').bail().isEmail().withMessage('Invalid email format'),
     body('name').notEmpty().withMessage('Name cannot be empty').bail().isString().withMessage('Name must string'),

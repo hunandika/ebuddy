@@ -21,8 +21,8 @@ const authenticate = async (req: AuthRequest, res: Response, next: NextFunction)
         req.user = decodedToken
         next()
     } catch (error) {
-        logger.error('Unauthorized, token missing', error)
-        return generateAPIResponse(res, { message: 'Unauthorized, token missing', statusCode: 401 })
+        logger.error('Authenticate token failed', error)
+        return generateAPIResponse(res, { message: 'Authenticate token failed', statusCode: 401 })
     }
 }
 
