@@ -26,7 +26,6 @@
         "**/*.ts"
     ],
     "exclude": [
-        "node_modules",
-        "functions"
+        "node_modules"
     ]
 }
