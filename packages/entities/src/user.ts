@@ -6,4 +6,8 @@ export interface User {
     createdAt: string
     updatedAt: string
     isDeleted: boolean
+    totalAverageWeightRatings: number
+    numberOfRents: number
+    recentlyActive: number
+    rankingScore: number
 }
