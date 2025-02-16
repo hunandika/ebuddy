@@ -3,7 +3,7 @@ import { UserController } from '#/controller/userController'
 import logger from '#utils/logger'
 
 export const updateUserRankCron = new CronJob(
-    '*/5 * * * *', // update every 5 minutes for testing purposes
+    '*/1 * * * *', // update every 1 minutes for testing purposes
     async function () {
         logger.info('Running Cron Update user ranking')
         const userController = new UserController()
