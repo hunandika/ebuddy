@@ -1,0 +1,26 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+    "ts-node": {
+        "transpileOnly": true,
+        "require": [
+            "tsconfig-paths/register"
+        ]
+    },
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": ".",
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "#*": [
+                "./*"
+            ]
+        }
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

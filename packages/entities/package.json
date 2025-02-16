@@ -1,0 +1,17 @@
+{
+  "name": "@repo/entities",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./user": {
+      "types": "./src/user.ts",
+      "default": "./src/user.js"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "typescript": "^5.7.3"
+  }
+}
