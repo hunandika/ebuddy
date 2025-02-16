@@ -9,12 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@repo/entities": "*",
     "@emotion/cache": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.4",
     "@mui/material-nextjs": "^6.4.3",
+    "@mui/x-data-grid": "^7.26.0",
     "@reduxjs/toolkit": "^2.5.1",
+    "@repo/entities": "*",
     "@repo/typescript-config": "*",
     "axios": "^1.7.9",
     "firebase": "^11.3.1",
