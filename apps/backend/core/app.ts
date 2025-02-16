@@ -1,12 +1,14 @@
 import express, { Application } from 'express'
 import morganMiddleware from '#middleware/morgan'
 import v1Routes from '#/routes/v1'
+import cors from 'cors'
 import userRoutesTechnicalTest from '#routes/userRoutes.technicaltest'
 
 const app: Application = express()
 
 // Middleware
 app.use(express.json())
+app.use(cors())
 app.use(morganMiddleware)
 
 // According to the needs of the technical test questions, the endpoint names are update-user-data and fetch-user-data
