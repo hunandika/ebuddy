@@ -389,8 +389,53 @@ Ensure you have the following installed:
             "statusCode": 401
          }
          ```
+---
 
+## ⏱️ Multi-Factor Ranking Score Calculation with Cron Job
+### Overview
+This project implements a **multi-factor ranking system** for users in a Firestore database. Since Firestore does not support true multi-factor sorting, we precompute a **rankingScore** using a scheduled **Cron Job** and store it in Firestore. This allows efficient querying with pagination.
 
+### Approach
+   1. **Cron Job Execution:** Periodically runs to recalculate and update the `rankingScore` for all users.
+   2. **Precomputed Ranking Score:** Ensures Firestore queries remain fast and efficient.
+   3. **Multi-Factor Calculation:** Ranking is based on **ratings, number of rentals, and recent activity.**
+   4. **Firestore Query Optimization:** Sorting and pagination use a single indexed field (`rankingScore`).
+
+### Ranking Score Formula
+The ranking score is calculated as follows:
+
+```typescript
+const rankingScore =
+    user.totalAverageWeightRatings * 1000 + // Highest priority
+    user.numberOfRents * 10 +               // Second priority
+    user.recentlyActive / 1e10;             // Tiebreaker
+```
+
+#### **Why This Formula?**
+   - **Ratings (`x1000`)** have the highest impact to prioritize high-rated users.
+   - **Number of rents (`x10`)** ensures active users are ranked higher.
+   - **Recent activity (`/1e10`)** is only used as a tiebreaker to differentiate users with the same scores.
+
+### Firestore Data Structure
+Each document in the **USERS** collection contains:
+```json
+{
+  "totalAverageWeightRatings": 4.3,
+  "numberOfRents": 30,
+  "recentlyActive": 1738938812000,
+  "rankingScore": 4773.893
+}
+```
+
+### Benefits of This Approach
+1. ✅ **Fast Firestore Queries:** Sorting and pagination are handled efficiently using a single indexed field.
+2. ✅ **Scalable Solution:** The precomputed ranking avoids performance issues with large datasets.
+3. ✅ **Automated Updates:** The Cron Job ensures ranking scores remain fresh without client-side overhead.
+
+---
+### 🚀 **This solution ensures optimal user ranking while maintaining Firestore performance!**
+
+___
 ## 🛠️ Technologies Used
 
 - **Express.js**: Framework building the API.
