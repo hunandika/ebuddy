@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/store/store';
 import { logout } from '@/store/auth/actions';
@@ -24,9 +25,14 @@ export default function DashboardComponent() {
   };
 
   const handleLoadData = (pagination) => {
-    const page = pagination.page || 0;
+    const page = pagination?.page || 0;
     dispatch(getUser({ limit: pageSize, page }));
   };
+
+  useEffect(() => {
+    handleLoadData(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDelete = (id: string) => {
     dispatch(deleteUser({ id }));
@@ -34,7 +40,7 @@ export default function DashboardComponent() {
 
   const handleCreate = () => {
     router.push('/users/create');
-  }
+  };
 
   return (
     <>

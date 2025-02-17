@@ -2,6 +2,9 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "author": "Hunandika Adyota",
+  "license": "ISC",
+  "description": "Frontend repository for eBuddy technical test",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

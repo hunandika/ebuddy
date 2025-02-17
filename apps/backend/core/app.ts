@@ -3,6 +3,7 @@ import morganMiddleware from '#middleware/morgan'
 import v1Routes from '#/routes/v1'
 import cors from 'cors'
 import userRoutesTechnicalTest from '#routes/userRoutes.technicaltest'
+import { updateUserRankCron } from './cron'
 
 const app: Application = express()
 
@@ -25,5 +26,7 @@ app.use((_, res) => {
 app.get('/healthz', (_, res) => {
     res.status(200).json({ status: 'OK' })
 })
+
+updateUserRankCron.start()
 
 export default app

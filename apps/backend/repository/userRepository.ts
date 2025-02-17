@@ -1,6 +1,7 @@
 import { db } from '#config/firebaseConfig'
 import { User } from '@repo/entities/user'
 import { Meta } from '#entities/meta'
+import { RankScore } from '#utils/ranking'
 
 const userCollection = db.collection('users')
 
@@ -25,7 +26,7 @@ export class UserRepository {
         const totalSnapshot = await userCollection.where('isDeleted', '==', false).get()
         const snapshot = await userCollection
             .where('isDeleted', '==', false)
-            .orderBy('createdAt')
+            .orderBy('rankingScore', 'desc')
             .offset(offset)
             .limit(limit)
             .get()
@@ -101,5 +102,37 @@ export class UserRepository {
 
         const userCreated = await userCollection.doc(user.id).get()
         return { ...userCreated.data() } as User
+    }
+
+    async updateRecentlyActive(id: string): Promise<void> {
+        const dateNow = new Date()
+        const doc = userCollection.doc(id)
+        const docSnap = await doc.get()
+        const userData = docSnap.data() as User
+
+        if (!docSnap.exists || userData.isDeleted) {
+            return
+        }
+
+        await doc.update({
+            recentlyActive: dateNow.getTime(),
+        })
+    }
+
+    async updateUserRanking() {
+        const snapshot = await userCollection.where('isDeleted', '==', false).get()
+        if (snapshot.empty) {
+            return
+        }
+
+        const batch = db.batch()
+        snapshot.docs.forEach(doc => {
+            const user = doc.data() as User
+            const docRef = userCollection.doc(doc.id)
+            batch.update(docRef, {
+                rankingScore: RankScore(user),
+            })
+        })
+        await batch.commit()
     }
 }

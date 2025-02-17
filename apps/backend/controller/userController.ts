@@ -99,4 +99,12 @@ export class UserController {
             generateAPIResponse(res, { message: 'Error deleting user', statusCode: 500 })
         }
     }
+
+    public async updateUserRanking(): Promise<void> {
+        try {
+            await this.userRepository.updateUserRanking()
+        } catch (error) {
+            logger.error('Error update users rank', error)
+        }
+    }
 }

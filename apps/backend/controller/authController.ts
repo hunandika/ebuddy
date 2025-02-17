@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { UserRepository } from '#repository/userRepository'
-import { AuthRepository } from '#repository/authRepository'
 import { User } from '@repo/entities/user'
 import { generateAPIResponse } from '#utils/http'
 import logger from '#utils/logger'
@@ -8,11 +7,9 @@ import { AuthRequest } from '#entities/auth'
 
 export class AuthController {
     private userRepository: UserRepository
-    private authRepository: AuthRepository
 
     constructor() {
         this.userRepository = new UserRepository()
-        this.authRepository = new AuthRepository()
     }
 
     public async verify(req: AuthRequest, res: Response): Promise<void> {
@@ -24,6 +21,7 @@ export class AuthController {
 
             const user = await this.userRepository.findById(req.user.uid)
             if (!user) {
+                await this.userRepository.updateRecentlyActive(req.user.uid)
                 generateAPIResponse(res, { message: 'User not found', statusCode: 404 })
                 return
             }

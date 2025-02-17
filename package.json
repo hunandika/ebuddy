@@ -1,6 +1,9 @@
 {
   "name": "ebuddy",
   "private": "true",
+  "author": "Hunandika Adyota",
+  "license": "ISC",
+  "description": "Turborepo mono repository for eBuddy technical test",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -8,8 +11,7 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "lint": "turbo run lint",
-    "test": "turbo run test"
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "turbo": "^2.4.2"
