@@ -1,6 +1,9 @@
 {
   "name": "ebuddy",
   "private": "true",
+  "author": "Hunandika Adyota",
+  "license": "ISC",
+  "description": "Turborepo mono repository for eBuddy technical test",
   "workspaces": [
     "apps/*",
     "packages/*"
